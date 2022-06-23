@@ -50,6 +50,16 @@ jobs:
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
 
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: 213748
+          private_key: ${{ secrets.MEAL }}
+          # Optional (defaults to ID of the repository's installation).
+          # installation_id: 1337
+          # Optional (defaults to the current repository).
+          # repository: "owner/repo"
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
@@ -57,8 +67,8 @@ jobs:
         uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: "213748"
+          password: ${{ steps.generate_token.outputs.token }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
