@@ -57,7 +57,7 @@ jobs:
           app_id: 213748
           private_key: ${{ secrets.MEAL }}
           # Optional (defaults to ID of the repository's installation).
-          # installation_id: 1337
+          installation_id: 26784363
           # Optional (defaults to the current repository).
           # repository: "owner/repo"
       # Login against a Docker registry except on PR
